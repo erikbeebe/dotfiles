@@ -3,7 +3,6 @@ set shiftwidth=4
 set tabstop=4
 colorscheme delek
 
-" highlight white space on line endings
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
@@ -15,6 +14,25 @@ match ExtraWhitespace /\s\+$/
 "let g:netrw_winsize = 25
 "let g:netrw_list_hide= '.*\.swp$'
 
-" vim filename in tmux tabs
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+
+"if &term == "screen.xterm-256color"
+"  set t_ts="\ek"
+"  set t_fs="\e\\"
+"  set title
+"endif
+
+"if &term == "screen"
+"  set t_ts="\ek"
+"  set t_fs="\e\\"
+"  set title
+"endif
+
+" vim filename in tabs
 autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("/usr/bin/tmux rename-window '[vim " . expand("%:t") . "]'")
-autocmd VimLeave * call system("/usr/bin/tmux setw automatic-rename")
+autocmd VimLeave * call system("tmux setw automatic-rename")
+
+" ctags
+set tags=~/.ctags_py
