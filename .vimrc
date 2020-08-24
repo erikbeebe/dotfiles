@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 let g:airline_theme='ouo'
@@ -47,8 +48,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 "map <C-p> :tabprev<CR>
 "map <C-n> :tabnext<CR>
-map <C-i> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
+"map <C-i> :NERDTreeToggle<CR>
+"let NERDTreeIgnore = ['\.pyc$']
+
+let g:ctrlp_map = '<c-i>'
+let g:ctrlp_cmd = 'CtrlP'
+
 
 " buffer experiments
 " This allows buffers to be hidden if you've modified a buffer.
@@ -73,7 +78,19 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 
 " experiment
-"set clipboard+=unnamedplus
-set clipboard=unnamedplus
+" NO set clipboard+=unnamedplus
+"set clipboard=unnamedplus
 "set go+=a               " Visual selection automatically copied to the clipboard
-set mouse+=a
+"set mouse+=a
+
+" GVIM configurables
+if has("gui_running")
+  set guifont=Hack\ 12
+  colorscheme darkblue
+endif
+
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
