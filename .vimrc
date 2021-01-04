@@ -33,6 +33,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 let g:airline_theme='ouo'
@@ -94,3 +95,15 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
+
+noremap <F3> :set invnumber<CR>
+
+set completeopt+=longest,menu,popup
+set completepopup=height:10,width:60,highlight:Pmenu,border:off
+set pumwidth=10
+
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+autocmd ColorScheme * highlight Pmenu ctermbg=lightblue guibg=gray
+set updatetime=1000
